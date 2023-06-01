@@ -10,14 +10,31 @@ namespace ShadowingHidingOverridingPrac32
     {
         class Parent
         {
+            public int Variable = 273;
+
+            public void Method()
+            {
+                Console.WriteLine("어흥");
+            }
+
+            public virtual void Method2()
+            {
+                Console.WriteLine("어흥흥");
+            }
         }
 
         class Child : Parent
         {
-
+            public new string Variable = "이칠삼";
+            public new void Method()
+            {
+                Console.WriteLine("야옹");
+            }
+            public override void Method2()
+            {
+                Console.WriteLine("야옹야옹");
+            }
         }
-
-
 
         // Shadowing 예제
         public static int number = 10;  // 같은 이름의 지역변수에 의해 가려짐(클래스 변수)
@@ -27,6 +44,19 @@ namespace ShadowingHidingOverridingPrac32
             int number = 10;
             Console.WriteLine(number);  // 지역변수 number 출력
             Console.WriteLine(Program.number); // 이렇게 접근은 가능
+
+            // 하이딩 예제
+            Child child = new Child();
+            Console.WriteLine(child.Variable);
+            
+            Parent p = child;            
+            Console.WriteLine(p.Variable);
+
+            child.Method();
+            p.Method();
+
+            child.Method2();
+            p.Method2();
         }
         void doSomething()
         {
